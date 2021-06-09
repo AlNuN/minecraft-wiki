@@ -1,6 +1,6 @@
 <main>
     <h1>Login de Acesso</h1>
-    <form action="menu.php" method="post">
+    <form action="/autenticar" method="post">
         <div class="form-field">
             <label for="email" >Login do Jogador:</label>
             <input type="email" id="email" name="email">
@@ -10,5 +10,10 @@
             <input type="password" id="senha" name="senha">
         </div>
         <button type="submit">Entrar</button>
+
+        <?php if($this->view->login == 'erro') { ?>
+            <span>*E-mail e ou senha inválido(s)</span>
+        <?php } ?>
+
     </form>
 </main>

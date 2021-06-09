@@ -6,16 +6,28 @@ use MF\Init\Bootstrap;
 
 class Route extends Bootstrap {
 
-	protected function initRoutes() {
+    protected function initRoutes() {
 
-		$routes['home'] = array(
-			'route' => '/',
-			'controller' => 'indexController',
-			'action' => 'index'
-		);
+        $routes['home'] = array(
+            'route' => '/',
+            'controller' => 'indexController',
+            'action' => 'index'
+        );
 
-		$this->setRoutes($routes);
-	}
+        $routes['autenticar'] = array(
+            'route' => '/autenticar',
+            'controller' => 'AuthController',
+            'action' => 'autenticar'
+        );
+
+        $routes['menu'] = array(
+            'route' => '/menu',
+            'controller' => 'MenuController',
+            'action' => 'menu'
+        );
+
+        $this->setRoutes($routes);
+    }
 
 }
 
