@@ -29,11 +29,20 @@ class AuthController extends Action {
     }
   }
 
-  public function sair(){
-    session_start();
-    session_destroy();
-    header('Location: /');
-  }
+    public function sair(){
+        session_start();
+        session_destroy();
+        header('Location: /');
+    }
+
+    public static function validaAutenticacao() {
+        session_start();
+    
+        if(!isset($_SESSION['id']) || $_SESSION['id'] == ''){
+            header('Location:/?login=erro');
+        }
+    }
+
 
 }
 

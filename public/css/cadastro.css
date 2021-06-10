@@ -1,0 +1,22 @@
+.bloco-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  margin: 20px 20px 10px 20px;
+}
+
+.bloco-grid div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bloco-grid label {
+  margin-right: 10px;
+}
+
+.bloco-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

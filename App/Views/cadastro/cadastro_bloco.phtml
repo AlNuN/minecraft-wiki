@@ -1,0 +1,38 @@
+<main>
+    <h1>Cadastro de Bloco</h1>
+    <form action="/novo_bloco" method="post" class="bloco-form">
+        <div class="bloco-grid">
+            <div>
+                <label for="nome_bloco">Nome: </label>
+                <input type="text" name="nome_bloco" id="nome_bloco">
+            </div>
+            <div>
+                <label for="transparencia">Transparência: </label>
+                <select type="select" name="transparencia" id="transparencia">
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div>
+                <label for="ferramenta">Ferramenta: </label>
+                <input type="text" name="ferramenta" id="ferramenta">
+            </div>
+            <div>
+                <label for="empilhavel">Empilhável: </label>
+                <select type="select" name="empilhavel" id="empilhavel">
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div>
+                <label for="experiencia">Experiência: </label>
+                <input type="text" name="experiencia" id="experiencia">
+            </div>
+            <div>
+                <label for="explosao">Resistência a Explosão: </label>
+                <input type="text" name="explosao" id="explosao">
+            </div>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+</main>
