@@ -9,4 +9,7 @@
             <a href="/listar_receita">Listar Receita</a>
         </div>
     </form>
+    <?php if($this->view->cadastro == 'sucesso') { ?>
+        <span class="success">*Cadastro realizado com sucesso</span>
+    <?php } ?>
 </main>
