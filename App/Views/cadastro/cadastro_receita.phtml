@@ -1,0 +1,19 @@
+<main>
+    <h1>Cadastro de Receitas</h1>
+    <form action="/nova_receita" method="post" class="flex-center">
+        <div class="receita-form">
+            <table>
+                <?php for($i=1;$i<=9;++$i) { ?>
+                    <?php if(($i + 2) % 3 == 0) echo '<tr>'; ?>
+                        <td><input type="text" class="table-input" name="<?=$i?>-item"></td>
+                    <?php if($i % 3 == 0) echo '</tr>'; ?>
+                <?php } ?>
+            </table>
+            <div>-></div>
+            <input type="text" name="nome-item" class="nome-item">
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+</main>

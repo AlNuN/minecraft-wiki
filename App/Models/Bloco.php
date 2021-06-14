@@ -40,7 +40,9 @@
     }
 
     public function getAll(){
-        $query = "select nome_bloco, ferramenta, transparencia from blocos where id_usuario = :id_usuario";
+        $query = "select nome_bloco, ferramenta, transparencia ";
+        $query .= "from blocos where id_usuario = :id_usuario ";
+        $query .= "order by nome_bloco ASC";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
         $stmt->execute();
