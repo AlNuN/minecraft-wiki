@@ -1,0 +1,22 @@
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-button{
+  display: block;
+  border: lightgray 1px solid;
+  text-decoration: none;
+  color: black;
+  margin: 5px;
+  text-align: center;
+  background: ghostwhite;
+  font-weight: 700;
+  padding: 3px;
+  box-shadow: inset 0px 0px 3px 0px lightgray;
+}
+
+.link-button:active {
+  box-shadow: inset -2px -2px 3px 1px black;
+}

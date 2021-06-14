@@ -38,5 +38,14 @@
   
         return $this;
     }
+
+    public function getAll(){
+        $query = "select nome_bloco, ferramenta, transparencia from blocos where id_usuario = :id_usuario";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
+        $stmt->execute();
+  
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
   }
 ?>

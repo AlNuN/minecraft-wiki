@@ -38,6 +38,12 @@ class Route extends Bootstrap {
             'action' => 'novoBloco'
         );
 
+        $routes['listar_bloco'] = array(
+            'route' => '/listar_bloco',
+            'controller' => 'CadastroController',
+            'action' => 'listarBloco'
+        );
+
         $this->setRoutes($routes);
     }
 

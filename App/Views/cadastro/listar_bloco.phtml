@@ -1,0 +1,34 @@
+<main class="flex-center">
+    <h1>Listagem de blocos</h1>
+    <table class="listagem">
+        <thead>
+            <tr>
+                <td>
+                    Nome
+                </td>
+                <td>
+                    Ferramenta
+                </td>
+                <td>
+                    Transparente
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->view->blocos as $id_bloco => $bloco) { ?>
+                <tr>
+                    <td>
+                        <?=$bloco['nome_bloco']?>
+                    </td>
+                    <td>
+                        <?=$bloco['ferramenta']?>
+                    </td>
+                    <td>
+                        <?=$bloco['transparencia']?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <a class="link-button" class="inner-menu" href="/menu">Voltar</a>
+</main>

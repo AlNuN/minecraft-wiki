@@ -9,7 +9,6 @@ use App\Controllers\AuthController;
 class CadastroController extends Action {
     public function bloco () {
         AuthController::validaAutenticacao();
-        echo $_SESSION['id'];
         $this->render('cadastro_bloco');
     }
 
@@ -29,6 +28,17 @@ class CadastroController extends Action {
         $bloco->salvar();
 
         header('Location: /menu?cadastro=sucesso');
+    }
+
+    public function listarBloco () {
+        AuthController::validaAutenticacao();
+
+        $bloco = Container::getModel('Bloco');
+        $bloco->__set('id_usuario', $_SESSION['id']);
+
+        $this->view->blocos = $bloco->getAll();
+
+        $this->render('listar_bloco');
     }
 }
 
