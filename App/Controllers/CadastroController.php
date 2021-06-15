@@ -95,6 +95,18 @@ class CadastroController extends Action {
 
         $this->render('listar_receita');
     }
+
+    public function consultaDados () {
+        $url = 'https://minecraft-ids.grahamedgecombe.com/items.json';
+        $client = curl_init($url);
+        curl_setopt($client, \CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($client);
+        $result = json_decode($response);
+
+        $this->view->dados = $result;
+
+        $this->render('consulta_dados');
+    }
 }
 
 ?>

@@ -1,0 +1,30 @@
+<main class="flex-center">
+    <h1>Consultar itens da API</h1>
+    <table class="listagem">
+        <thead>
+            <tr>
+                <td>Imagem</td>
+                <td>Id numérico</td>
+                <td>Metadados</td>
+                <td>Nome</td>
+                <td>Id textual</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->view->dados as $key => $value) { ?>
+                <tr>
+                    <td style="text-align: center;">
+                        <div style="display: inline-block;"
+                            class="items-28-<?=$value->type?>-<?=$value->meta?>">
+                        </div>
+                    </td>
+                    <td><?=$value->type?></td>
+                    <td><?=$value->meta?></td>
+                    <td><?=$value->name?></td>
+                    <td><?=$value->text_type?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <a class="link-button" class="inner-menu" href="/menu">Voltar</a>
+</main>
