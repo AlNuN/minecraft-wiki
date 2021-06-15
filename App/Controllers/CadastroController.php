@@ -50,9 +50,6 @@ class CadastroController extends Action {
         AuthController::validaAutenticacao();
         $receita = Container::getModel('Receita');
 
-        // echo '<pre>';
-        // print_r($_POST);
-        // echo '</pre>';
         $item = 1;
         $order = '';
         for($i=1;$i<=9;++$i) {
@@ -79,14 +76,24 @@ class CadastroController extends Action {
 
         $receita->__set('ordem', $order);
         $receita->__set('nome_item', $_POST['nome-item']);
-
-        // echo '<pre>';
-        // print_r($receita);
-        // echo '</pre>';
         $receita->salvar();
 
         header('Location: /menu?cadastro=sucesso');
 
+    }
+
+    public function listarReceita() {
+        AuthController::validaAutenticacao();
+
+        $receita = Container::getModel('Receita');
+
+        $componente = isset($_GET['item'])
+            ? $_GET['item']
+            : '';
+
+        $this->view->receitas = $receita->buscaPorComponente($componente);
+
+        $this->render('listar_receita');
     }
 }
 

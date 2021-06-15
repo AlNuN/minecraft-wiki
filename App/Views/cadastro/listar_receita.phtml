@@ -1,0 +1,34 @@
+<main class="flex-center">
+    <h1>Listagem de receitas</h1>
+    <form action="/listar_receita" method="get" class="search-form">
+        <label for="search-item">Entrar com o bloco a ser procurado: </label>
+        <input type="search" name="item" id="search-item">
+        <button type="submit" >Buscar</button>
+    </form>
+    <table class="listagem">
+        <thead>
+            <tr>
+                <td>Receita</td>
+                <td>Item 1</td>
+                <td>Item 2</td>
+                <td>Item 3</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if(!sizeof($this->view->receitas)) { ?>
+                <tr>
+                    <td colspan="4">Sem resultados</td>
+                </tr>
+            <?php } ?>
+            <?php foreach($this->view->receitas as $key => $receita) { ?>
+                <tr>
+                    <td><?=$receita['nome_item']?></td>
+                    <td><?=$receita['item_1']?></td>
+                    <td><?=$receita['item_2']?></td>
+                    <td><?=$receita['item_3']?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <a class="link-button" class="inner-menu" href="/menu">Voltar</a>
+</main>

@@ -39,5 +39,22 @@
         return $this;
     }
 
+    public function buscaPorComponente ($componente) {
+        // Set a Mysql user-defined variable
+        $sql = "SET @componente = :componente COLLATE utf8_unicode_ci";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':componente', "%$componente%", \PDO::PARAM_STR);
+        $stmt->execute();
+
+        $query = "select nome_item, item_1, item_2, item_3 ";
+        $query .= "from receitas where item_1 like @componente ";
+        $query .= "or item_2 like @componente ";
+        $query .= "or item_3 like @componente ";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+  
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
   }
 ?>

@@ -56,6 +56,12 @@ class Route extends Bootstrap {
             'action' => 'novaReceita'
         );
 
+        $routes['listar_receita'] = array(
+            'route' => '/listar_receita',
+            'controller' => 'CadastroController',
+            'action' => 'listarReceita'
+        );
+
         $this->setRoutes($routes);
     }
 
