@@ -1,7 +1,9 @@
-.login {
-  width: 350px;
+.form-field {
+  margin: 10px 30px;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.form-field {
-  margin: 10px auto;
+.form-field label {
+  margin-right: 10px;
 }

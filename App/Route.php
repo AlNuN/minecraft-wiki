@@ -20,6 +20,24 @@ class Route extends Bootstrap {
             'action' => 'autenticar'
         );
 
+        $routes['logout'] = array(
+            'route' => '/logout',
+            'controller' => 'AuthController',
+            'action' => 'sair'
+        );
+
+        $routes['inscreverse'] = array(
+            'route' => '/inscreverse',
+            'controller' => 'IndexController',
+            'action' => 'inscreverse'
+        );
+
+        $routes['registrar'] = array(
+            'route' => '/registrar',
+            'controller' => 'IndexController',
+            'action' => 'registrar'
+        );
+
         $routes['menu'] = array(
             'route' => '/menu',
             'controller' => 'MenuController',

@@ -1,4 +1,4 @@
-<main class="login">
+<main class="flex-center">
     <h1>Login de Acesso</h1>
     <form action="/autenticar" method="post">
         <div class="form-field">
@@ -9,9 +9,12 @@
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha">
         </div>
-        <button type="submit">Entrar</button>
+        <div class="flex-center">
+            <button type="submit">Entrar</button>
+            <a class="link-button" class="inner-menu" href="/inscreverse">Inscrever-se</a>
+        </div>
 
-        <?php if($this->view->login == 'erro') { ?>
+        <?php if(isset($this->view->login) && $this->view->login == 'erro') { ?>
             <span class="error">*E-mail e ou senha inválido(s)</span>
         <?php } ?>
 

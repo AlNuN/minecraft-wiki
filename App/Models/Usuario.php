@@ -43,5 +43,31 @@
   
         return $this;
       }
+
+    public function validarCadastro(){
+        $valido = true;
+    
+        if(strlen($this->__get('email')) < 3) {
+            $valido = false;
+        }
+
+        if(strlen($this->__get('senha')) < 3) {
+            $valido = false;
+        }
+
+        return $valido;
+    }
+
+    public function getUsuarioPorEmail() {
+        $query = "select email from usuarios where email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':email', $this->__get('email'));
+        $stmt->execute();
+  
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
   }
 ?>
