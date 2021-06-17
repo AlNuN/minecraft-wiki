@@ -15,4 +15,7 @@
     <?php if($this->view->cadastro == 'sucesso') { ?>
         <span class="success">*Cadastro realizado com sucesso</span>
     <?php } ?>
+    <?php if($this->view->cadastro == 'bloco') { ?>
+        <span class="error">O nome do bloco não existe ou foi digitado incorretamente</span>
+    <?php } ?>
 </main>

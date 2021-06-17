@@ -5,6 +5,7 @@ namespace App\Controllers;
 use MF\Controller\Action;
 use MF\Model\Container;
 use App\Controllers\AuthController;
+use App\Exceptions\BlocoNaoExiste;
 
 class CadastroController extends Action {
     public function bloco () {
@@ -17,17 +18,22 @@ class CadastroController extends Action {
 
         $bloco = Container::getModel('Bloco');
 
-        $bloco->__set('id_usuario', $_SESSION['id']);
-        $bloco->__set('nome_bloco', $_POST['nome_bloco']);
-        $bloco->__set('transparencia', $_POST['transparencia']);
-        $bloco->__set('ferramenta', $_POST['ferramenta']);
-        $bloco->__set('empilhavel', $_POST['empilhavel']);
-        $bloco->__set('experiencia', floatval($_POST['experiencia']));
-        $bloco->__set('explosao', (int) $_POST['explosao']);
+        if(empty($_POST['nome_bloco'])) {
+            header('Location: /menu?cadastro=bloco');
+        } else {
+            $bloco->__set('id_usuario', $_SESSION['id']);
+            $bloco->__set('nome_bloco', $_POST['nome_bloco']);
+            $bloco->__set('transparencia', $_POST['transparencia']);
+            $bloco->__set('ferramenta', $_POST['ferramenta']);
+            $bloco->__set('empilhavel', $_POST['empilhavel']);
+            $bloco->__set('experiencia', floatval($_POST['experiencia']));
+            $bloco->__set('explosao', (int) $_POST['explosao']);
 
-        $bloco->salvar();
+            $bloco->salvar();
 
-        header('Location: /menu?cadastro=sucesso');
+            header('Location: /menu?cadastro=sucesso');
+        }
+
     }
 
     public function listarBloco () {
@@ -49,6 +55,7 @@ class CadastroController extends Action {
     public function novaReceita () {
         AuthController::validaAutenticacao();
         $receita = Container::getModel('Receita');
+        $user_id = $_SESSION['id'];
 
         $item = 1;
         $order = '';
@@ -59,7 +66,11 @@ class CadastroController extends Action {
             if ($pi != '') {
                 if (!$receita->__isset($oi) && property_exists($receita, $oi)
                     && $pi != $receita->__get('item_1') && $pi != $receita->__get('item_2')){
-                    $receita->__set($oi, $pi);
+                    try {
+                        $receita->setFK($oi, $pi, $user_id);
+                    } catch (BlocoNaoExiste $erro) {
+                        header('Location: /menu?cadastro=bloco');
+                    }
                     ++$item;
                 }
                 if($pi == $receita->__get('item_1')) {
@@ -74,12 +85,17 @@ class CadastroController extends Action {
             }
         }
 
+        $receita->__set('id_usuario', $user_id);
         $receita->__set('ordem', $order);
-        $receita->__set('nome_item', $_POST['nome-item']);
+        try {
+            $receita->setFK('resultado', $_POST['nome-item'], $user_id);
+        } catch (BlocoNaoExiste $erro) {
+            header('Location: /menu?cadastro=bloco');
+        }
+
         $receita->salvar();
 
         header('Location: /menu?cadastro=sucesso');
-
     }
 
     public function listarReceita() {

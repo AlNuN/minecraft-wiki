@@ -22,6 +22,10 @@
       $this->$atributo = $valor;
     }
 
+    public function __isset($atributo) {
+        return isset($this->$atributo);
+    }
+
     public function salvar(){
         $query = "insert into blocos";
         $query .= "(id_usuario, nome_bloco, transparencia, ferramenta, empilhavel, experiencia, explosao)";
@@ -48,6 +52,16 @@
         $stmt->execute();
   
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getIdByName() {
+        $query = "select id from blocos where nome_bloco = :nome_bloco and id_usuario = :id_usuario";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome_bloco', $this->__get('nome_bloco'));
+        $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
+        $stmt->execute();
+
+        $this->__set('id', $stmt->fetch(\PDO::FETCH_ASSOC)['id']);
     }
   }
 ?>
