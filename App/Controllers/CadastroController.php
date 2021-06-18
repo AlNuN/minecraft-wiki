@@ -103,6 +103,8 @@ class CadastroController extends Action {
 
         $receita = Container::getModel('Receita');
 
+        $receita->__set('id_usuario', $_SESSION['id']);
+
         $componente = isset($_GET['item'])
             ? $_GET['item']
             : '';

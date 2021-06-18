@@ -7,7 +7,7 @@ use MF\Model\Model;
 use MF\Model\Container;
 use App\Exceptions\BlocoNaoExiste;
 
-  class Receita extends Model{
+  class Receita extends Model {
 
     private $id;
     private $id_usuario;  // fk para id do usuário
@@ -19,7 +19,7 @@ use App\Exceptions\BlocoNaoExiste;
     /*
         $ordem é uma string com a ordem dos itens na criação. 
         Cada número corresponde ao número do item e não ao id do bloco. 
-        ex: item_1
+        ex: item_1 vai aparecer em ordem como 1.
     */
 
     public function __get($atributo){
@@ -59,11 +59,13 @@ use App\Exceptions\BlocoNaoExiste;
 
         $query = "
             select resultado, item_1, item_2, item_3 
-            from receitas where item_1 like @componente 
+            from receitas where id_usuario = :id_usuario
+            and (item_1 like @componente 
             or item_2 like @componente
-            or item_3 like @componente 
+            or item_3 like @componente)
         ";
         $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
         $stmt->execute();
   
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
