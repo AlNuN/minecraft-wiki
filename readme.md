@@ -25,3 +25,6 @@ There you can:
 - List all recipes and search them by its items;
 - Check an external API for listing all items in the game.
 
+## Environments
+
+The app is hosted at http://minecraft-register.epizy.com/
